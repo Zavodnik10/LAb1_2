@@ -1,3 +1,13 @@
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('a', type=int)
+parser.add_argument('b', type=float)
+parser.add_argument('k', type=float)
+
+args = parser.parse_args()
+year1 = args.a
+cords = (args.b, args.k)
+
 from haversine import haversine
 from geopy.geocoders import Nominatim
 import folium
@@ -54,10 +64,12 @@ def vids(d, cord):
 
     [new_list.append(item) for item in c if item not in new_list]
     
-    return new_list[0:10]
+    new_list = new_list[0:10]
+    new_list1 = []
+    for i in new_list:
+        new_list1.append(i[0])
+    return new_list1
+print(cords)
+print(year1)
+print (vids(dicte(year1, read_file('locations.list')), cords))
 
-
-
-
-print(vids(dicte(2014, read_file('locations.list')), (7.64167, -5.52735)))
-            
